@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Instagram, Send } from "lucide-react"
+import { ArrowRight, Instagram, Mail, Send } from "lucide-react"
 import { CartSection } from "@/components/cart-section"
 import { CatalogTabs } from "@/components/catalog-tabs"
 
@@ -140,15 +140,47 @@ export default function Home() {
           <p className="text-center text-sm leading-loose text-gray-500">
             © 2025 Opta Design. Todos los derechos reservados.
           </p>
-          <div className="flex items-center gap-4 justify-center">
+          <div className="flex items-center gap-6 justify-center">
             <Link
               href="https://www.instagram.com/optadesign_/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-500 hover:text-gray-900"
+              className="text-gray-500 hover:text-pink-600 transition-colors"
+              aria-label="Instagram"
             >
               <Instagram className="h-5 w-5" />
-              <span className="sr-only">Instagram</span>
+            </Link>
+            <Link
+              href="https://wa.link/mdiutu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-500 hover:text-green-600 transition-colors"
+              aria-label="WhatsApp"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-5 w-5"
+              >
+                <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21" />
+                <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z" />
+                <path d="M13 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1Z" />
+                <path d="M9 14a5 5 0 0 0 6 0" />
+              </svg>
+            </Link>
+            <Link
+              href="mailto:optadesign.team@gmail.com"
+              className="text-gray-500 hover:text-blue-600 transition-colors"
+              aria-label="Email"
+            >
+              <Mail className="h-5 w-5" />
             </Link>
           </div>
         </div>
