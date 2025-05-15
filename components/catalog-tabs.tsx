@@ -99,7 +99,6 @@ export function CatalogTabs() {
               name="Post de Instagram"
               description="Diseño visual estático para tu feed"
               price={6500}
-              image="/placeholder.svg?height=200&width=400&text=Post+Instagram"
               tag="INSTAGRAM"
               tagColor="bg-pink-500"
               gradientFrom="from-pink-50"
@@ -119,7 +118,6 @@ export function CatalogTabs() {
               name="Post de Facebook"
               description="Diseño optimizado para publicaciones"
               price={6500}
-              image="/placeholder.svg?height=200&width=400&text=Post+Facebook"
               tag="FACEBOOK"
               tagColor="bg-blue-500"
               gradientFrom="from-blue-50"
@@ -139,7 +137,6 @@ export function CatalogTabs() {
               name="Historia de Instagram/Facebook"
               description="Diseño visual vertical para stories"
               price={6500}
-              image="/placeholder.svg?height=200&width=400&text=Historia+IG/FB"
               tag="HISTORIA"
               tagColor="bg-purple-500"
               gradientFrom="from-purple-50"
