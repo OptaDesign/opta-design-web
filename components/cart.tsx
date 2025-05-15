@@ -53,15 +53,7 @@ export function Cart({ openCheckout = false }: { openCheckout?: boolean }) {
   useEffect(() => {
     console.log("Cart items:", items)
     console.log("Total items:", totalItems)
-    console.log("Total price:", totalPrice)
-  }, [items, totalItems, totalPrice])
-
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "ARS",
-    }).format(price)
-  }
+  }, [items, totalItems])
 
   const handleCheckout = () => {
     if (items.length === 0) return
@@ -78,9 +70,9 @@ export function Cart({ openCheckout = false }: { openCheckout?: boolean }) {
 
     if (items.length > 0) {
       items.forEach((item) => {
-        orderText += `- ${item.name} x${item.quantity} (${formatPrice(item.price * item.quantity)})\n`
+        orderText += `- ${item.name} x${item.quantity}\n`
       })
-      orderText += `\nTotal: ${formatPrice(totalPrice)}\n\n`
+      orderText += `\n`
     } else {
       orderText += "Me gustaría recibir información sobre sus servicios de diseño.\n\n"
     }
@@ -145,7 +137,6 @@ export function Cart({ openCheckout = false }: { openCheckout?: boolean }) {
     <div className="flex flex-col sm:flex-row sm:items-center justify-between py-3 border-b">
       <div className="flex-1 mb-2 sm:mb-0">
         <h4 className="font-medium">{item.name}</h4>
-        <p className="text-sm text-gray-500">{formatPrice(item.price)} por unidad</p>
       </div>
       <div className="flex items-center gap-2 self-end sm:self-auto">
         <Button
@@ -231,8 +222,8 @@ export function Cart({ openCheckout = false }: { openCheckout?: boolean }) {
                   <div className="w-full space-y-4">
                     <Separator />
                     <div className="flex justify-between font-medium">
-                      <span>Total</span>
-                      <span>{formatPrice(totalPrice)}</span>
+                      <span>Total de servicios</span>
+                      <span>{totalItems}</span>
                     </div>
                     <div className="flex gap-2">
                       <Button variant="outline" className="flex-1" onClick={() => clearCart()}>
@@ -257,13 +248,12 @@ export function Cart({ openCheckout = false }: { openCheckout?: boolean }) {
                         <span>
                           {item.name} x{item.quantity}
                         </span>
-                        <span>{formatPrice(item.price * item.quantity)}</span>
                       </div>
                     ))}
                     <Separator className="my-2" />
                     <div className="flex justify-between font-medium">
-                      <span>Total</span>
-                      <span>{formatPrice(totalPrice)}</span>
+                      <span>Total de servicios</span>
+                      <span>{totalItems}</span>
                     </div>
                   </div>
                 </div>
@@ -380,7 +370,7 @@ export function DirectCheckoutButton() {
 }
 
 function CartCheckout({ onClose }: { onClose: () => void }) {
-  const { items, totalItems, totalPrice, clearCart } = useCart()
+  const { items, totalItems, clearCart } = useCart()
   const { showToast } = useToast()
   const [contactMethod, setContactMethod] = useState<"email" | "whatsapp">("whatsapp")
   const [name, setName] = useState("")
@@ -398,13 +388,6 @@ function CartCheckout({ onClose }: { onClose: () => void }) {
     contactMethod: "whatsapp",
   })
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("es-AR", {
-      style: "currency",
-      currency: "ARS",
-    }).format(price)
-  }
-
   const handleSendOrder = () => {
     if (!name) {
       showToast("Por favor ingresa tu nombre")
@@ -415,9 +398,9 @@ function CartCheckout({ onClose }: { onClose: () => void }) {
 
     if (items.length > 0) {
       items.forEach((item) => {
-        orderText += `- ${item.name} x${item.quantity} (${formatPrice(item.price * item.quantity)})\n`
+        orderText += `- ${item.name} x${item.quantity}\n`
       })
-      orderText += `\nTotal: ${formatPrice(totalPrice)}\n\n`
+      orderText += `\n`
     } else {
       orderText += "Me gustaría recibir información sobre sus servicios de diseño.\n\n"
     }
@@ -493,13 +476,12 @@ function CartCheckout({ onClose }: { onClose: () => void }) {
                   <span>
                     {item.name} x{item.quantity}
                   </span>
-                  <span>{formatPrice(item.price * item.quantity)}</span>
                 </div>
               ))}
               <Separator className="my-2" />
               <div className="flex justify-between font-medium">
-                <span>Total</span>
-                <span>{formatPrice(totalPrice)}</span>
+                <span>Total de servicios</span>
+                <span>{totalItems}</span>
               </div>
             </div>
           </div>

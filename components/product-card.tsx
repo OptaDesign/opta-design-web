@@ -4,14 +4,13 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { useCart } from "@/components/cart-provider"
-import { formatPrice } from "@/app/page"
 import { useToast } from "@/components/toast-provider"
 
 export function ProductCard({
   id,
   name,
   description,
-  price,
+  price, // Mantenemos el parámetro para no romper la funcionalidad, pero no lo mostramos
   image,
   tag,
   tagColor,
@@ -82,10 +81,6 @@ export function ProductCard({
         <CardFooter
           className={`flex flex-col gap-3 items-start bg-gradient-to-r ${gradientFrom} ${gradientTo} border-t p-4`}
         >
-          <div>
-            <p className="text-sm text-gray-500 line-through">{formatPrice(price * 1.15)}</p>
-            <p className="text-2xl font-bold text-pink-600">{formatPrice(price)}</p>
-          </div>
           <Button className={`${buttonColor} w-full mt-2`} onClick={handleAddToCart}>
             Agregar al carrito
           </Button>
